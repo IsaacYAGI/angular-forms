@@ -8,15 +8,17 @@
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
 
-        <input class="form-control"
-               type="text"
-               name="nombre"
-               [class.is-invalid]="nombre.invalid && nombre.touched"
-               [ngModel]="usuario.nombre"
-               placeholder="Nombre"
-               required
-               minlength="5"
-               #nombre="ngModel">
+        <input 
+          class="form-control"
+          type="text"
+          name="nombre"
+          placeholder="Nombre"
+          required
+          minlength="5"
+          [class.is-invalid]="nombre.invalid && nombre.touched"
+          [ngModel]="usuario.nombre"
+          #nombre="ngModel"
+        >
       </div>
     </div>
 
@@ -24,16 +26,17 @@
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
-        <input class="form-control"
-              ngModel
-              name="apellido"
-              [class.is-invalid]="apellido.invalid && apellido.touched"
-               type="text"
-               placeholder="Apellido"
-               #apellido="ngModel"
-               required
-               minlength="5"
-               >
+        <input 
+          class="form-control"
+          type="text"
+          name="apellido"
+          placeholder="Apellido"
+          required
+          minlength="5"
+          [class.is-invalid]="apellido.invalid && apellido.touched"
+          [ngModel]="usuario.apellido"
+          #apellido="ngModel"
+        >
       </div>
     </div>
 
@@ -43,16 +46,17 @@
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-8">
 
-      <input class="form-control"
-            ngModel
-            name="correo"
-             type="email"
-             placeholder="Correo electrónico"
-             [class.is-invalid]="correo.invalid && correo.touched"
-             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-             #correo="ngModel"
-             required
-             >
+      <input 
+        class="form-control"
+        type="email"
+        name="correo"
+        placeholder="Correo electrónico"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        required
+        [class.is-invalid]="correo.invalid && correo.touched"
+        [ngModel]="usuario.correo"
+        #correo="ngModel"
+      >
     </div>
   </div>
 
