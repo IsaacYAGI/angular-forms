@@ -19,6 +19,18 @@ export class ReactiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get nombreInvalido(){
+    return this.forma.get('nombre').invalid && this.forma.get('nombre').touched;
+  }
+
+  get apellidoInvalido(){
+    return this.forma.get('apellido').invalid && this.forma.get('apellido').touched;
+  }
+
+  get correoInvalido(){
+    return this.forma.get('correo').invalid && this.forma.get('correo').touched;
+  }
+
   crearFormulario(){
     this.forma = this.formBuilder.group({
       //valor por defecto // sync validator // async validator
@@ -29,7 +41,11 @@ export class ReactiveComponent implements OnInit {
   }
 
   guardar(){
-    console.log(this.forma)
+    if (this.forma.invalid){
+      this.forma.markAllAsTouched();
+      return;
+    }
+    console.log(this.forma.value)
   }
 
 }
