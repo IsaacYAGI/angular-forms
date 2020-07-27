@@ -14,6 +14,7 @@ export class ReactiveComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.crearFormulario();
+    this.cargarDataAlFormulario();
    }
 
   ngOnInit(): void {
@@ -52,12 +53,29 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  cargarDataAlFormulario(){
+    // this.forma.setValue(//Con setValue se tienen que mandar todos los valores obligatoriamente o da error, no importa si estan en blanco, tiene que estar
+    this.forma.reset( //Con reset se pueden mandar valores por defecto y no tienen que ser todos los campos
+      {
+        nombre: 'Maria',
+        apellido: 'Perez',
+        correo: 'mperez@gmail.com',
+        direccion: {
+          distrito: 'Ontario',
+          ciudad: 'Ottawa'
+        }
+      }
+    )
+  }
+
   guardar(){
     if (this.forma.invalid){
       this.forma.markAllAsTouched();
       return;
     }
-    console.log(this.forma.value)
+    console.log(this.forma.value);
+
+    this.forma.reset();
   }
 
 }
