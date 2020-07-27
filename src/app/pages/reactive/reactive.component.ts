@@ -54,9 +54,7 @@ export class ReactiveComponent implements OnInit {
         distrito: ['', Validators.required],
         ciudad: ['', Validators.required]
       }),
-      pasatiempos: this.formBuilder.array([
-        [],[],[],[],[],
-      ])
+      pasatiempos: this.formBuilder.array([])
     });
   }
 
@@ -72,7 +70,9 @@ export class ReactiveComponent implements OnInit {
           ciudad: 'Ottawa'
         }
       }
-    )
+    );
+//Cargar un array dinamicamente con valores estaticos
+    //['Comer', 'Dormir'].forEach(valor => this.pasatiempos.push(this.formBuilder.control(valor,[Validators.required])))
   }
 
   guardar(){
@@ -83,6 +83,14 @@ export class ReactiveComponent implements OnInit {
     console.log(this.forma.value);
 
     this.forma.reset();
+  }
+
+  agregarPasatiempo(){
+    this.pasatiempos.push(this.formBuilder.control('', [Validators.required]))
+  }
+
+  borrarPasatiempo(i: number){
+    this.pasatiempos.removeAt(i);
   }
 
 }
