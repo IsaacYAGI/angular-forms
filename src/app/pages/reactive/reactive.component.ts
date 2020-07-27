@@ -37,6 +37,10 @@ export class ReactiveComponent implements OnInit {
       nombre:['', [Validators.required, Validators.minLength(5)]],
       apellido:['', [Validators.required, Validators.minLength(5)]],
       correo:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
+      direccion:this.formBuilder.group({
+        distrito: ['', Validators.required],
+        ciudad: ['', Validators.required]
+      })
     });
   }
 
