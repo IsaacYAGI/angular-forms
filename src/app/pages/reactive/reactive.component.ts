@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { ValidadoresService } from 'src/app/services/validadores.service';
 
 @Component({
   selector: 'app-reactive',
@@ -11,7 +12,8 @@ export class ReactiveComponent implements OnInit {
   forma: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private validadores: ValidadoresService
   ) {
     this.crearFormulario();
     this.cargarDataAlFormulario();
@@ -48,7 +50,8 @@ export class ReactiveComponent implements OnInit {
     this.forma = this.formBuilder.group({
       //valor por defecto // sync validator // async validator
       nombre:['', [Validators.required, Validators.minLength(5)]],
-      apellido:['', [Validators.required, Validators.minLength(5)]],
+      //Validacion sincrona personalizada. Se manda es la referencia a la funcion, no se invoca la misma (no se ponen parentesis)
+      apellido:['', [Validators.required, Validators.minLength(5), this.validadores.noHerrera]],
       correo:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
       direccion:this.formBuilder.group({
         distrito: ['', Validators.required],
