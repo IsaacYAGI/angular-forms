@@ -38,6 +38,10 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get('correo').invalid && this.forma.get('correo').touched;
   }
 
+  get usuarioInvalido(){
+    return this.forma.get('usuario').invalid && this.forma.get('usuario').touched;
+  }
+
   get distritoInvalido(){
     return this.forma.get('direccion.distrito').invalid && this.forma.get('direccion.distrito').touched;
   }
@@ -65,6 +69,7 @@ export class ReactiveComponent implements OnInit {
       //Validacion sincrona personalizada. Se manda es la referencia a la funcion, no se invoca la misma (no se ponen parentesis)
       apellido:['', [Validators.required, Validators.minLength(5), this.validadores.noHerrera]],
       correo:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
+      usuario:['', , this.validadores.existeUsuario],
       password1:['', [Validators.required]],
       password2:['', [Validators.required]],
       direccion:this.formBuilder.group({
@@ -84,6 +89,8 @@ export class ReactiveComponent implements OnInit {
         nombre: 'Maria',
         apellido: 'Perez',
         correo: 'mperez@gmail.com',
+        password1:'123',
+        password2:'123',
         direccion: {
           distrito: 'Ontario',
           ciudad: 'Ottawa'

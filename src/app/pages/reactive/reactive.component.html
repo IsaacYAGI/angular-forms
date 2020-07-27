@@ -58,6 +58,21 @@
              class="form-text text-danger">Ingrese correo valido</small>
     </div>
   </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Usuario</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="email"
+             placeholder="Ingrese su nombre de usuario"
+             formControlName="usuario"
+             [class.is-invalid]="usuarioInvalido"
+             >
+             <small 
+             *ngIf="usuarioInvalido"
+             class="form-text text-danger">Ese nombre de usuario ya fue tomado</small>
+    </div>
+  </div>
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Contraseña</label>
@@ -158,7 +173,7 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col">
-      <button type="submit" class="btn btn-outline-primary btn-block">
+      <button type="submit" class="btn btn-outline-primary btn-block" [disabled]="forma.pending">
         Guardar
       </button>
     </div>
