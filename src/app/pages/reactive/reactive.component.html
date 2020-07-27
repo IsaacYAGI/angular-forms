@@ -69,7 +69,11 @@
           class="form-control"
           placeholder="Distrito"
           formControlName="distrito"
-        >
+        [class.is-invalid]="distritoInvalido"
+             >
+             <small 
+             *ngIf="distritoInvalido"
+             class="form-text text-danger">Ingrese distrito valido</small>
       </div>
       <div class="col">
         <input 
@@ -77,7 +81,11 @@
           class="form-control"
           placeholder="Ciudad"
           formControlName="ciudad"
-        >
+        [class.is-invalid]="ciudadInvalido"
+             >
+             <small 
+             *ngIf="ciudadInvalido"
+             class="form-text text-danger">Ingrese ciudad valida</small>
       </div>
     </div>
   </div>

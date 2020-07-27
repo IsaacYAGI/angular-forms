@@ -31,6 +31,14 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get('correo').invalid && this.forma.get('correo').touched;
   }
 
+  get distritoInvalido(){
+    return this.forma.get('direccion.distrito').invalid && this.forma.get('direccion.distrito').touched;
+  }
+
+  get ciudadInvalido(){
+    return this.forma.get('direccion.ciudad').invalid && this.forma.get('direccion.ciudad').touched;
+  }
+
   crearFormulario(){
     this.forma = this.formBuilder.group({
       //valor por defecto // sync validator // async validator
