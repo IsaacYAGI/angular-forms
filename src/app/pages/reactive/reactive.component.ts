@@ -46,6 +46,18 @@ export class ReactiveComponent implements OnInit {
     return this.forma.get('direccion.ciudad').invalid && this.forma.get('direccion.ciudad').touched;
   }
 
+  get pass1Invalido(){
+    return this.forma.get('password1').invalid && this.forma.get('password1').touched;
+  }
+
+  get pass2Invalido(){
+    const pass1 = this.forma.get("password1").value;
+    const pass2 = this.forma.get("password2").value;
+
+    return (pass1 === pass2) ? false : true;
+
+  }
+
   crearFormulario(){
     this.forma = this.formBuilder.group({
       //valor por defecto // sync validator // async validator
@@ -53,11 +65,15 @@ export class ReactiveComponent implements OnInit {
       //Validacion sincrona personalizada. Se manda es la referencia a la funcion, no se invoca la misma (no se ponen parentesis)
       apellido:['', [Validators.required, Validators.minLength(5), this.validadores.noHerrera]],
       correo:['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
+      password1:['', [Validators.required]],
+      password2:['', [Validators.required]],
       direccion:this.formBuilder.group({
         distrito: ['', Validators.required],
         ciudad: ['', Validators.required]
       }),
       pasatiempos: this.formBuilder.array([])
+    },{
+      validators: [this.validadores.passwordsIguales('password1','password2')]
     });
   }
 
